@@ -34,9 +34,11 @@
         <h3>Информация о товаре</h3>
 
         <div class="infoContainer">
-            <div class="imageContainer">
-                <div th:each="img : ${product.getImageList()}" class="imageDiv">
-                    <img th:src="'/img/' + ${img.getFileName()}">
+            <div class="imageCollage">
+                <div class="imageContainer">
+                    <div th:each="img : ${product.getImageList()}" class="imageDiv">
+                        <img th:src="'/img/' + ${img.getFileName()}">
+                    </div>
                 </div>
             </div>
 

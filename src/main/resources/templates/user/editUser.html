@@ -16,21 +16,23 @@
 
   <h3>Выберите роль пользователя</h3>
   <div class="container">
-    <form th:method="POST" th:action="@{/admin/user/edit/{id}(id=${user.getId()})}" th:object="${user}" class="formUser">
-      <p th:text="'Логин: ' + ${user.getLogin()}"> Login USER</p>
+      <div class="content">
+        <form th:method="POST" th:action="@{/admin/user/edit/{id}(id=${user.getId()})}" th:object="${user}" class="formUser">
+          <p th:text="'Логин: ' + ${user.getLogin()}"> Login USER</p>
 
-      <div class="formString">
-        <label for="user">Пользователь</label>
-        <input type="radio" id="user" name="role" value="ROLE_USER" class="radioBut">
-      </div>
+          <div class="formString">
+            <label for="user">Пользователь</label>
+            <input type="radio" id="user" name="role" value="ROLE_USER" class="radioBut">
+          </div>
 
-      <div class="formString">
-          <label for="admin">Администратор</label>
-          <input type="radio" id="admin" name="role" value="ROLE_ADMIN" class="radioBut">
+          <div class="formString">
+              <label for="admin">Администратор</label>
+              <input type="radio" id="admin" name="role" value="ROLE_ADMIN" class="radioBut">
+          </div>
+
+          <input type="submit" value="Применить" class="submit">
+        </form>
       </div>
-      
-      <input type="submit" value="Применить" class="submit">
-    </form>
   </div>  
 </body>
 </html>

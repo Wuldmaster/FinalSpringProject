@@ -8,15 +8,29 @@
 <body>
     <header>
         <a th:href="@{/index}" class="headerLogo">Мир ПК</a>
-        <p></p>
-        <form method="get" th:action="@{/orders}" class="thirdSection">
+        <div th:if="*{isUser}" class="userLoginDiv">
+            <p th:text="'Пользователь: ' + ${userLogin}"></p>
+        </div>
+
+        <form th:if="*{isUser}" method="get" th:action="@{/orders}" class="thirdSection">
             <input type="submit" value="Мои заказы" class="thirdSectionButton">
         </form>
-        <form method="get" th:action="@{/cart}" class="firstSection">
+
+
+        <form th:if="*{isUser}" method="get" th:action="@{/cart}" class="firstSection">
             <input type="submit" value="Корзина" class="firstSectionButton">
         </form>
-        <form method="post" th:action="@{/logout}" class="secondSection">
-            <input type="submit" value="Выйти" class="firstSectionButton">
+        <form th:if="*{!isUser}" method="get" th:action="@{/auth/registration}" class="firstSection">
+            <input type="submit" value="Регистрация" class="firstSectionButton">
+        </form>
+
+
+        <form th:if="*{isUser}" method="post" th:action="@{/logout}" class="secondSection">
+            <input type="submit" value="Выйти" class="secondSectionButton">
+        </form>
+
+        <form th:if="*{!isUser}" method="get" th:action="@{/auth/login}" class="secondSection">
+            <input type="submit" value="Войти" class="secondSectionButton">
         </form>
     </header>
 

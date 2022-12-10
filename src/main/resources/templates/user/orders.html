@@ -8,7 +8,9 @@
 <body>
     <header>
         <a th:href="@{/index}" class="headerLogo">Мир ПК</a>
-        <p></p>
+        <div class="userLoginDiv">
+            <p th:text="'Пользователь: ' + ${userLogin}"></p>
+        </div>
         <form method="get" th:action="@{/orders}" class="thirdSection">
             <input type="submit" value="Мои заказы" class="thirdSectionButton">
         </form>

@@ -18,8 +18,17 @@ a{
     color: white;
 }
 
+.userLoginDiv{
+    justify-self: center;
+    align-self: center;
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+
 .thirdSection{
     grid-column: 3/4;
+    justify-self: center;
     align-self: center;
     margin-bottom: 0px;
 }
@@ -27,12 +36,14 @@ a{
 .firstSection{
     grid-column: 4/5;
     align-self: center;
+    justify-self: center;
     margin-bottom: 0px;
 }
 
 .secondSection{
     grid-column: 5/6;
     align-self: center;
+    justify-self: center;
     margin-bottom: 0px;
 }
 
@@ -51,8 +62,29 @@ a{
     background-color: rgb(86, 86, 234);
 }
 
-@media (max-width: 630px){
+@media (max-width: 720px){
     header{
-        grid-template-columns: 2fr 0.5fr 1fr 1fr;  
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        height: 200px;
+    }
+
+    .thirdSection{
+        grid-column: 1/2;
+        grid-row: 2/3;
+    }
+
+    .firstSection{
+        grid-column: 2/3;
+        grid-row: 2/3;
+    }
+
+    .secondSection{
+        grid-column: 3/4;
+        grid-row: 2/3;
+    }
+
+    .userLoginDiv{
+        grid-column: 2/4;
     }
 }

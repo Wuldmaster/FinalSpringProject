@@ -41,13 +41,23 @@ public class UserController {
     public String index(Model model) {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        String role = personDetails.getPerson().getRole();
 
-        if(role.equals("ROLE_ADMIN"))
-        {
-            return "redirect:/admin";
+        if(!authentication.getPrincipal().equals("anonymousUser")){
+            PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+            String role = personDetails.getPerson().getRole();
+            model.addAttribute("userLogin", personDetails.getPerson().getLogin());
+            model.addAttribute("isUser", true);
+
+            if(role.equals("ROLE_ADMIN"))
+            {
+                return "redirect:/admin";
+            }
+
+        } else {
+            model.addAttribute("isUser", false);
         }
+
+
         model.addAttribute("category", categoryService.findAll());
         model.addAttribute("products", productService.getAllProduct());
         return "user/index";
@@ -58,7 +68,7 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         Product product = productService.getProductId(id);
-
+        model.addAttribute("userLogin", personDetails.getPerson().getLogin());
         cartService.addProductToCart(personDetails.getPerson().getId(), product.getId());
         return "redirect:/cart";
     }
@@ -79,25 +89,28 @@ public class UserController {
         for (Product product: productsList) {
             price += product.getPrice();
         }
+        model.addAttribute("userLogin", personDetails.getPerson().getLogin());
         model.addAttribute("price", price);
         model.addAttribute("cart_product", productsList);
         return "user/cart";
     }
 
     @GetMapping("/cart/delete/{id}")
-    public String deleteProductCart(@PathVariable("id") int id){
+    public String deleteProductCart(@PathVariable("id") int id, Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
 
+        model.addAttribute("userLogin", personDetails.getPerson().getLogin());
         cartService.deleteByPersonIdAndProductId(personDetails.getPerson().getId(), id);
         return "redirect:/cart";
     }
 
     @GetMapping("/order/create")
-    public String order(){
+    public String order(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
 
+        model.addAttribute("userLogin", personDetails.getPerson().getLogin());
         orderService.createOrder(personDetails);
         return "redirect:/orders";
     }
@@ -107,6 +120,7 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
 
+        model.addAttribute("userLogin", personDetails.getPerson().getLogin());
         model.addAttribute("orders", orderService.findByPerson(personDetails.getPerson()));
         return "/user/orders";
     }
@@ -114,15 +128,23 @@ public class UserController {
     @PostMapping("/index/search")
     public String productSearch(@RequestParam("search") String search, @RequestParam("from") String from, @RequestParam("to") String to, @RequestParam(value = "priceSort", required = false, defaultValue = "")String priceSort, @RequestParam(value = "category", required = false, defaultValue = "")String category, Model model){
 
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if(!authentication.getPrincipal().equals("anonymousUser")){
+            PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+            model.addAttribute("isUser", true);
+            model.addAttribute("userLogin", personDetails.getPerson().getLogin());
+        } else {
+            model.addAttribute("isUser", false);
+        }
+
         model.addAttribute("isFlag", 1);
         model.addAttribute("search_product", productService.sortAndSearch(search, from, to, priceSort, category) );
         model.addAttribute("value_search", search);
         model.addAttribute("price_from", from);
         model.addAttribute("price_to", to);
         model.addAttribute("category", categoryService.findAll());
-        //model.addAttribute("products", productService.getAllProduct());
         return "/user/index";
 
     }
-        //TODO отображение картинок в инфо, имена пользователей, индекс = продукт,
 }

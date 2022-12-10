@@ -2,21 +2,53 @@
 <head>
     <meta charset="UTF-8">
     <title>Информация о товаре</title>
-    <link th:href="@{/css/header.css}" rel="stylesheet" href="css/header.css">
+    <link th:href="@{/css/headerUser.css}" rel="stylesheet" href="css/headerUser.css">
     <link th:href="@{/css/infoProduct.css}" rel="stylesheet" href="css/infoProduct.css">
 </head>
 <body>
     <header>
-        <a th:href="@{/product}" class="headerLogo">Мир ПК</a>
-    </header>
+    <a th:href="@{/index}" class="headerLogo">Мир ПК</a>
+
+    <div th:if="*{isUser}" class="userLoginDiv">
+        <p th:text="'Пользователь: ' + ${userLogin}"></p>
+    </div>
+
+    <form th:if="*{isUser}" method="get" th:action="@{/orders}" class="thirdSection">
+        <input type="submit" value="Мои заказы" class="thirdSectionButton">
+    </form>
+
+
+    <form th:if="*{isUser}" method="get" th:action="@{/cart}" class="firstSection">
+        <input type="submit" value="Корзина" class="firstSectionButton">
+    </form>
+    <form th:if="*{!isUser}" method="get" th:action="@{/auth/registration}" class="firstSection">
+        <input type="submit" value="Регистрация" class="firstSectionButton">
+    </form>
+
+
+    <form th:if="*{isUser}" method="post" th:action="@{/logout}" class="secondSection">
+        <input type="submit" value="Выйти" class="secondSectionButton">
+    </form>
+
+    <form th:if="*{!isUser}" method="get" th:action="@{/auth/login}" class="secondSection">
+        <input type="submit" value="Войти" class="secondSectionButton">
+    </form>
+</header>
+
     <div class="container">
         <h3>Информация о товаре</h3>
         <div class="infoContainer">
-            <div class="imageContainer">
-                <div th:each="img : ${product.getImageList()}" class="imageDiv">
-                        <img th:src="'/img/' + ${img.getFileName()}">
+            <div class="imageCollage">
+                <div class="mainImageDiv">
+                    <img th:src="'/img/' + ${product.getImageList().get(0).getFileName()}" class="mainImage">
+                </div>
+                <div class="imageContainer">
+                    <div th:each="img : ${product.getImageList()}" class="imageDiv">
+                        <img th:src="'/img/' + ${img.getFileName()}" id="imageList">
+                    </div>
                 </div>
             </div>
+
 
             <div class="productInfo">
                 <div class="start">
@@ -69,6 +101,7 @@
             </div>
             
         </div>
-    </div>     
+    </div>
+    <script th:src="@{/js/infoProduct.js}" src="js/infoProduct.js"></script>
 </body>
 </html>

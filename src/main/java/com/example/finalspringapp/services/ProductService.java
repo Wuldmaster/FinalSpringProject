@@ -30,26 +30,26 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    //Данный метод позволяет вернуть товар по id
+
     public Product getProductId(int id) {
         Optional<Product> optionalProduct = productRepository.findById(id);
         return optionalProduct.orElse(null);
     }
 
-    //Данный метод позволяет сохранить товар
+
     @Transactional
     public void saveProduct(Product product) {
         productRepository.save(product);
     }
 
-    //Данный метод позволяет обновить данные товара
+
     @Transactional
     public void updateProduct(int id, Product product) {
         product.setId(id);
         productRepository.save(product);
     }
 
-    //Данный метод позволяет удалить товар по id
+
     @Transactional
     public void deleteProduct(int id) {
         productRepository.deleteById(id);
@@ -78,11 +78,11 @@ public class ProductService {
 
     public List<Product> sortAndSearch(String search, String from, String to, String priceSort, String category){
 
-        if(from.isEmpty()){
+        if(from.equals("0")){
             from = "0";
         }
 
-        if(to.isEmpty()){
+        if(to.equals("0")){
             to="1000000";
         }
 

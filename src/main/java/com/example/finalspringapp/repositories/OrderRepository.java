@@ -13,8 +13,5 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
     List<Order> findByPerson(Person person);
 
-    @Query(value = "select * from orders where lower(number) LIKE '%?1'", nativeQuery = true)
-    List<Order> findByLastNumbers(String number);
-
     List<Order> findByNumberEndsWith(String number);
 }

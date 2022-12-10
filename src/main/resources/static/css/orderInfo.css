@@ -1,0 +1,122 @@
+body{
+    background-color: rgba(184, 216, 169, 0.49);
+}
+
+h3{
+    font-size: 30px;
+    text-align: center;
+    
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 300px 300px 300px 1fr;
+    justify-items: center;
+}
+
+.colOne{
+    grid-column: 2/3;
+    height: 40px;
+}
+
+.colTwo{
+    grid-column: 3/4;
+    height: 40px;
+}
+
+.colThree{
+    grid-column: 4/5;
+    height: 40px;
+}
+
+.colButton{
+    background-color: rgb(45, 45, 241);
+    color: white;
+    font-size: 20px;
+    border: 1px solid transparent;
+    height: 100%;
+    width: 280px;
+}
+
+.colChosenButton{
+    background-color: rgb(10, 237, 105);
+    color: white;
+    font-size: 20px;
+    border: 1px solid transparent;
+    height: 100%;
+    width: 280px;
+}
+.colButton:hover{
+    background-color: rgb(10, 237, 105);
+}
+
+.functionalContainer{
+    display: grid;
+    justify-items: center; 
+    margin-top: 16px;  
+}
+
+.content{
+    display: grid;
+    background-color: rgb(117, 228, 163);
+    grid-template-columns: 0.5fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    border-radius: 10px;
+    width: 800px;
+    margin-bottom: 50px;
+    padding: 15px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    height: 400px;
+}
+
+.imageDiv{
+    align-self: center;
+    grid-column: 1/2;
+    grid-row: 1/6;
+    width: 150px;
+    margin-right: 15px;
+}
+
+.image{
+    height: auto;
+    width: 100%;
+}
+
+.changeStatus{
+    text-align: center;
+    font-size: 30px;
+    grid-column: 1/3;
+    grid-row: 6/7;
+}
+
+.changeStatus:hover{
+    color: white;
+}
+
+.content>p{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.productInfo{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: 20px;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px black solid;
+    border-radius: 8px;
+    background-color: white;
+    width: 90%;
+}
+
+.start{
+    justify-self: start;
+    font-weight: bold;
+}
+
+.end{
+    justify-self: end;
+}

@@ -1,0 +1,113 @@
+body{
+    background-color: rgba(184, 216, 169, 0.49);
+}
+
+h3{
+    font-size: 30px;
+    text-align: center;
+}
+
+.productCartDiv{
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 50%;
+    margin-top: 50px;
+    margin-left: 25%;
+    justify-items: center;
+    background-color: rgb(162, 201, 239);
+    border: 1px solid black;
+    border-radius: 15px;
+    min-width: 700px;
+}
+
+.productDiv{
+    display: grid;
+    width: 100%;
+}
+
+.productCart{
+    display: grid;
+    justify-self: center;
+    grid-template-columns: 0.5fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 0.2fr;
+    height: 120px;
+    padding: 15px;
+    width: 100%;
+    border: 1px black solid;
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    min-width: 500px;
+    max-width: 600px;
+}
+
+.productCart:hover{
+    box-shadow: 5px 5px 5px 0 rgba(21, 207, 46, 0.603);
+}
+
+.imageDiv{
+    align-self: center;
+    grid-column: 1/2;
+    grid-row: 1/3;
+    width: 150px;
+    margin-right: 15px;
+}
+
+.image{
+    height: auto;
+    width: 100%;
+}
+
+.title{
+    align-self: center;
+    grid-column: 2/4;
+    grid-row: 1/2;
+    font-size: 25px;
+    justify-self: end;
+}
+
+.priceLabel{
+    align-self: center;
+    grid-column: 2/3;
+    grid-row: 2/3;
+    font-size: 25px;
+    justify-self: start;
+}
+
+.price{
+    align-self: center;
+    grid-column: 3/4;
+    grid-row: 2/3;
+    font-size: 25px;
+    justify-self: end;
+}
+
+.delCart{
+    font-size: 20px;
+    grid-column: 1/3;
+    cursor: pointer;
+}
+
+.delCart:hover{
+    color:rgba(149, 38, 38, 0.966)
+}
+
+.orderButton{
+    text-align: center;
+    padding-top: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: rgb(25, 25, 247);
+    height: 30px;
+    width: 200px;
+    font-size: 18px;
+    color: black;
+    border: 1px solid gray;
+    border-radius: 8px;
+    color: white;
+}
+
+.orderButton:hover{
+    background-color: rgb(86, 86, 234);
+}

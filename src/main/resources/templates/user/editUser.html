@@ -1,0 +1,36 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование пользователя</title>
+    <link th:href="@{/css/headerUser.css}" rel="stylesheet" href="css/headerUser.css">
+    <link th:href="@{/css/editUser.css}" rel="stylesheet" href="css/editUser.css">
+</head>
+<body>
+  <header>
+    <a th:href="@{/admin}" class="headerLogo">Мир ПК</a>
+    <p></p>
+    <form method="post" th:action="@{/logout}" class="secondSection">
+        <input type="submit" value="Выйти" class="firstSectionButton">
+    </form>
+  </header>
+
+  <h3>Выберите роль пользователя</h3>
+  <div class="container">
+    <form th:method="POST" th:action="@{/admin/user/edit/{id}(id=${user.getId()})}" th:object="${user}" class="formUser">
+      <p th:text="'Логин: ' + ${user.getLogin()}"> Login USER</p>
+
+      <div class="formString">
+        <label for="user">Пользователь</label>
+        <input type="radio" id="user" name="role" value="ROLE_USER" class="radioBut">
+      </div>
+
+      <div class="formString">
+          <label for="admin">Администратор</label>
+          <input type="radio" id="admin" name="role" value="ROLE_ADMIN" class="radioBut">
+      </div>
+      
+      <input type="submit" value="Применить" class="submit">
+    </form>
+  </div>  
+</body>
+</html>

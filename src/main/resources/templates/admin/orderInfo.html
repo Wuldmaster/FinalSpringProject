@@ -1,0 +1,91 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Просмотр заказа</title>
+  <link th:href="@{/css/headerUser.css}" rel="stylesheet" href="css/headerUser.css">
+  <link th:href="@{/css/orderInfo.css}" rel="stylesheet" href="css/orderInfo.css">
+</head>
+<body>
+  <header>
+    <a th:href="@{/admin}" class="headerLogo">Мир ПК</a>
+    <p></p>
+    <form method="post" th:action="@{/logout}" class="secondSection">
+        <input type="submit" value="Выйти" class="firstSectionButton">
+    </form>
+  </header>
+
+  <h3>Личный кабинет администратора</h3>
+
+  <div class="container">
+    <form th:action="@{/admin/product}" class="colOne">
+            <input type="submit" value="Работа с товарами" class="colButton">
+    </form>
+    
+    <form th:action="@{/admin/user}" class="colTwo">
+        <input type="submit" value="Работа с пользователями" class="colButton">
+    </form>
+
+    <form th:action="@{/admin/order}" class="colThree">
+        <input type="submit" value="Работа с заказами" class="colChosenButton">
+    </form>
+  </div>
+
+  <h3 th:text="'Заказ № ' + ${order.getNumber()}"></h3>
+
+  <div class="functionalContainer">
+    <div class="content">
+      <div class="imageDiv">
+        <img th:src="'/img/' + ${order.getProduct().imageList[0].getFileName()}" 
+          class="image">
+      </div>
+      
+      <div class="productInfo">
+        <div class="start">
+          <p>Наименование: </p>
+        </div>
+        <div class="end">
+          <p th:text="${order.getProduct().getTitle()}"></p>
+        </div>
+      </div>
+
+      <div class="productInfo">
+        <div class="start">
+          <p>Количество: </p>
+        </div>
+        <div class="end">
+          <p th:text="${order.getCount()}"></p>
+        </div>
+      </div>
+
+      <div class="productInfo">
+        <div class="start">
+          <p>Цена: </p>
+        </div>
+        <div class="end">
+          <p th:text="${order.getPrice()} + ' руб'"></p>
+        </div>
+      </div>
+
+      <div class="productInfo">
+        <div class="start">
+          <p>Дата заказа: </p>
+        </div>
+        <div class="end">
+          <p th:text="${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}"></p>
+        </div>
+      </div>
+
+      <div class="productInfo">
+        <div class="start">
+          <p>Статус: </p>
+        </div>
+        <div class="end">
+          <p th:text="${order.getStatus()}"></p>
+        </div>
+      </div>
+
+      <a th:href="@{/admin/order/edit/{id}(id=${order.getId()})}" class="changeStatus">Смена статуса заказа</a>
+    </div>
+  </div>
+</body>
+</html>

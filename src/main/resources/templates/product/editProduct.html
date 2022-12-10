@@ -1,0 +1,102 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование товаров</title>
+    <link th:href="@{/css/headerUser.css}" rel="stylesheet" href="css/headerUser.css">
+    <link th:href="@{/css/editProduct.css}" rel="stylesheet" href="css/editProduct.css">
+</head>
+<body>
+    <header>
+        <a th:href="@{/admin}" class="headerLogo">Мир ПК</a>
+        <p></p>
+        <form method="post" th:action="@{/logout}" class="secondSection">
+            <input type="submit" value="Выйти" class="firstSectionButton">
+        </form>
+      </header>
+    <div class="container">
+        <div class="formContainer">
+            <h3>Редактирование товаров</h3>
+
+            <form th:method="POST" 
+                th:action="@{/admin/product/edit/{id}(id=${product.getId()})}" 
+                th:object="${product}">
+
+                <label for="title">Введите наименование товара: </label>
+
+                <input type="text" 
+                    th:field="*{title}" 
+                    placeholder="Наименование" 
+                    id="title"
+                    class="field">
+
+                <div style="color: red" 
+                    th:if="${#fields.hasErrors('title')}" 
+                    th:errors="*{title}">
+                </div>
+                
+                <label for="description">Введите описание товара: </label>
+
+                <textarea th:field="*{description}" 
+                    placeholder="Описание" 
+                    id="description"></textarea>
+
+                <div style="color: red" 
+                    th:if="${#fields.hasErrors('description')}" 
+                    th:errors="*{description}"></div>
+                
+                <label for="price">Введите цену товара: </label>
+
+                <input type="number" 
+                    th:field="*{price}"
+                     min="1" 
+                     step="0.00" 
+                     id="price"
+                     placeholder="Цена"
+                     class="field">
+
+                <div style="color: red" 
+                    th:if="${#fields.hasErrors('price')}" 
+                    th:errors="*{price}"></div>
+                
+                <label for="warehouse">Введите склад: </label>
+
+                <input type="text" 
+                    th:field="*{warehouse}" 
+                    placeholder="Склад" 
+                    id="warehouse"
+                    class="field">
+
+                <div style="color: red" 
+                    th:if="${#fields.hasErrors('warehouse')}" 
+                    th:errors="*{warehouse}"></div>
+                
+                <label for="seller">Введите данные о продавце: </label>
+
+                <textarea th:field="*{seller}" 
+                    placeholder="Продавец" 
+                    id="seller"
+                    class="field"></textarea>
+
+                <div style="color: red" 
+                    th:if="${#fields.hasErrors('seller')}" 
+                    th:errors="*{seller}"></div>
+                
+                <label for="category">Введите категорию товара: </label>
+
+                <select name="category" 
+                    th:field="*{category}" 
+                    id="category"
+                    class="field">
+                    <div th:each="element : ${category}">
+                        <option th:text="${element.getName()}" 
+                            th:value="${element.getId()}">
+                        </option>
+                    </div>
+                </select>
+
+                <input type="submit" value="Редактировать" class="submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

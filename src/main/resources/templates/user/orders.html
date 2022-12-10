@@ -1,0 +1,53 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Заказы</title>
+    <link th:href="@{/css/headerUser.css}" rel="stylesheet" href="css/headerUser.css">
+    <link th:href="@{/css/orders.css}" rel="stylesheet" href="css/orders.css">
+</head>
+<body>
+    <header>
+        <a th:href="@{/index}" class="headerLogo">Мир ПК</a>
+        <p></p>
+        <form method="get" th:action="@{/orders}" class="thirdSection">
+            <input type="submit" value="Мои заказы" class="thirdSectionButton">
+        </form>
+        <form method="get" th:action="@{/cart}" class="firstSection">
+            <input type="submit" value="Корзина" class="firstSectionButton">
+        </form>
+        <form method="post" th:action="@{/logout}" class="secondSection">
+            <input type="submit" value="Выйти" class="firstSectionButton">
+        </form>
+    </header>
+
+    <h3>Заказы</h3>
+    <div class="container">
+        <div th:each="order : ${orders}" class="productDiv">
+            <div class="productCart">
+                <h3 th:text="'Заказ № ' + ${order.getNumber()}" class="orderNumber"></h3>
+            
+                <div class="imageDiv">
+                    <img th:src="'/img/' + ${order.getProduct().imageList[0].getFileName()}" 
+                        class="image">
+                </div>
+
+                <p class="titleLabel">Наименование: </p>
+                <p th:text="${order.getProduct().getTitle()}" class="title"></p>
+
+                <p class="countLabel">Количество: </p>
+                <p th:text="${order.getCount()}" class="count"></p>
+
+                <p class="priceLabel">Цена: </p>
+                <p th:text="${order.getPrice()} + ' руб'" class="price"></p>
+
+                <p class="dateLabel">Дата заказа: </p>
+                <p th:text="${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}" class="date"></p>
+
+                <p class="statusLabel">Статус: </p>
+                <p th:text="${order.getStatus()}" class="status"></p>
+            </div> 
+             
+        </div>
+    </div>
+</body>
+</html>

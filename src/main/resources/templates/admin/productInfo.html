@@ -1,0 +1,106 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Просмотр товара</title>
+    <link th:href="@{/css/headerUser.css}" rel="stylesheet" href="css/headerUser.css">
+    <link th:href="@{/css/productInfo.css}" rel="stylesheet" href="css/productInfo.css">
+</head>
+<body>
+    <header>
+        <a th:href="@{/admin}" class="headerLogo">Мир ПК</a>
+        <p></p>
+        <form method="post" th:action="@{/logout}" class="secondSection">
+            <input type="submit" value="Выйти" class="firstSectionButton">
+        </form>
+    </header>
+    
+    <h3>Личный кабинет администратора</h3>
+
+    <div class="container">
+    <form th:action="@{/admin/product}" class="colOne">
+            <input type="submit" value="Работа с товарами" class="colChosenButton">
+    </form>
+    
+    <form th:action="@{/admin/user}" class="colTwo">
+        <input type="submit" value="Работа с пользователями" class="colButton">
+    </form>
+
+    <form th:action="@{/admin/order}" class="colThree">
+        <input type="submit" value="Работа с заказами" class="colButton">
+    </form>
+    </div>
+    
+    <div class="containerContent">
+        <h3>Информация о товаре</h3>
+
+        <div class="infoContainer">
+            <div class="imageContainer">
+                <div th:each="img : ${product.getImageList()}" class="imageDiv">
+                    <img th:src="'/img/' + ${img.getFileName()}">
+                </div>
+            </div>
+
+        
+
+            <div class="productInfo">
+                <div class="start">
+                    <p>Наименование: </p>
+                </div>
+                <div class="end">
+                    <p th:text="${product.getTitle()}"></p>
+                </div>
+            </div>
+
+            <div class="productInfo">
+                <div class="start">
+                    <p>Цена: </p>
+                </div>
+                <div class="end">
+                    <p th:text="${product.getPrice()} + ' руб'"></p>
+                </div>
+            </div>
+
+            <div class="productInfo">
+                <div class="start">
+                    <p>Склад: </p>
+                </div>
+                <div class="end">
+                    <p th:text="${product.getWarehouse()}"></p>
+                </div>
+            </div>
+
+            <div class="productInfo">
+                <div class="start">
+                    <p>Продавец: </p>
+                </div>
+                <div class="end">
+                    <p th:text="${product.getSeller()}"></p>
+                </div>
+            </div>
+
+            <div class="productInfo">
+                <div class="start">
+                    <p>Категория: </p>
+                </div>
+                <div class="end">
+                    <p th:text="${product.getCategory().getName()}"></p>
+                </div>
+            </div>
+
+            <p class="descLabel">Описание: </p>
+            <div class="description">
+                <p th:text="${product.getDescription()}"></p>
+            </div>
+
+            <form th:action="@{/admin/product/edit/{id}(id=${product.getId()})}" class="editProduct">
+                <input type="submit" value="Редактировать товар" class="editProductButton">
+            </form>
+
+            <form th:action="@{/admin/product/delete/{id}(id=${product.getId()})}" class="delProduct">
+                <input type="submit" value="Удалить товар" class="delProductButton">
+            </form>
+        
+        </div>
+    </div>
+</body>
+</html>

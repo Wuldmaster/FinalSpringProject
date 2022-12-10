@@ -1,0 +1,81 @@
+body{
+    background-color: rgba(184, 216, 169, 0.49);
+}
+
+h3{
+    font-size: 30px;
+    margin-top: -20px;
+}
+
+.container{
+    display: grid;
+    justify-items: center;
+    margin-top: 50px;
+}
+
+.infoContainer{
+    display: grid;
+    justify-items: center;
+    background-color: aquamarine;
+    height: auto;
+    width: 1200px;
+    padding: 50px;
+    margin-bottom: 100px;
+    border-radius: 10px;
+}
+
+.imageContainer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    width: 100%;
+    height: 240px;
+    justify-items: center;
+    margin-bottom: 20px;
+}
+.imageDiv{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+}
+img{
+    width: 200px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.productInfo{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: 20px;
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px black solid;
+    border-radius: 8px;
+    background-color: white;
+    width: 60%;
+}
+
+.start{
+    justify-self: start;
+    font-weight: bold;
+}
+
+.end{
+    justify-self: end;
+}
+.descLabel{
+    font-weight: bold;
+    font-size: 20px;
+}
+.description{
+    margin-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px black solid;
+    border-radius: 8px;
+    background-color: white;
+    width: 60%;
+    height: auto;
+    font-size: 20px;
+}

@@ -1,0 +1,68 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Работа с пользователями</title>
+  <link th:href="@{/css/headerUser.css}" rel="stylesheet" href="css/headerUser.css">
+  <link th:href="@{/css/userView.css}" rel="stylesheet" href="css/userView.css">
+</head>
+<body>
+  <header>
+    <a th:href="@{/admin}" class="headerLogo">Мир ПК</a>
+    <p></p>
+    <form method="post" th:action="@{/logout}" class="secondSection">
+        <input type="submit" value="Выйти" class="firstSectionButton">
+    </form>
+  </header>
+
+  <h3>Личный кабинет администратора</h3>
+
+  <div class="container">
+    <form th:action="@{/admin/product}" class="colOne">
+            <input type="submit" value="Работа с товарами" class="colButton">
+    </form>
+    
+    <form th:action="@{/admin/user}" class="colTwo">
+        <input type="submit" value="Работа с пользователями" class="colChosenButton">
+    </form>
+
+    <form th:action="@{/admin/order}" class="colThree">
+        <input type="submit" value="Работа с заказами" class="colButton">
+    </form>
+  </div>
+
+  <h3>Список пользователей</h3>
+
+  <div class="functionalContainer">
+    <div class="content">
+      <table>
+        <tr>
+          <th>
+            Логин:
+          </th>
+          <th>
+            Роль:
+          </th>
+          <th>
+            Просмотр:
+          </th>
+        </tr>
+
+        <div th:each="user : ${users}">
+
+          <tr>
+            <td>
+              <p th:text="${user.getLogin()}"></p>
+            </td>
+            <td>
+              <p th:text="${user.getRole()}"></p>
+            </td>
+            <td>
+              <a th:href="@{/admin/user/info/{id}(id=${user.getId()})}">просмотр</a>
+            </td>
+          </tr>
+        </div>
+      </table>
+    </div>
+  </div>
+</body>
+</html>

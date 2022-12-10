@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о товаре</title>
+    <link th:href="@{/css/header.css}" rel="stylesheet" href="css/header.css">
+    <link th:href="@{/css/infoProduct.css}" rel="stylesheet" href="css/infoProduct.css">
+</head>
+<body>
+    <header>
+        <a th:href="@{/product}" class="headerLogo">Мир ПК</a>
+    </header>
+    <div class="container">
+        <h3>Информация о товаре</h3>
+        <div class="infoContainer">
+            <div class="imageContainer">
+                <div th:each="img : ${product.getImageList()}" class="imageDiv">
+                        <img th:src="'/img/' + ${img.getFileName()}">
+                </div>
+            </div>
+
+            <div class="productInfo">
+                <div class="start">
+                    <p>Наименование: </p>
+                </div>
+                <div class="end">
+                    <p th:text="${product.getTitle()}"></p>
+                </div>
+            </div>
+
+            <div class="productInfo">
+                <div class="start">
+                    <p>Цена: </p>
+                </div>
+                <div class="end">
+                    <p th:text="${product.getPrice()} + ' руб'"></p>
+                </div>
+            </div>
+
+            <div class="productInfo">
+                <div class="start">
+                    <p>Склад: </p>
+                </div>
+                <div class="end">
+                    <p th:text="${product.getWarehouse()}"></p>
+                </div>
+            </div>
+
+            <div class="productInfo">
+                <div class="start">
+                    <p>Продавец: </p>
+                </div>
+                <div class="end">
+                    <p th:text="${product.getSeller()}"></p>
+                </div>
+            </div>
+
+            <div class="productInfo">
+                <div class="start">
+                    <p>Категория: </p>
+                </div>
+                <div class="end">
+                    <p th:text="${product.getCategory().getName()}"></p>
+                </div>
+            </div>
+
+            <p class="descLabel">Описание: </p>
+            <div class="description">
+                <p th:text="${product.getDescription()}"></p>
+            </div>
+            
+        </div>
+    </div>     
+</body>
+</html>

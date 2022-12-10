@@ -1,0 +1,78 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Просмотр заказов</title>
+  <link th:href="@{/css/headerUser.css}" rel="stylesheet" href="css/headerUser.css">
+    <link th:href="@{/css/orderView.css}" rel="stylesheet" href="css/orderView.css">
+</head>
+<body>
+  <header>
+    <a th:href="@{/admin}" class="headerLogo">Мир ПК</a>
+    <p></p>
+    <form method="post" th:action="@{/logout}" class="secondSection">
+        <input type="submit" value="Выйти" class="firstSectionButton">
+    </form>
+  </header>
+
+  <h3>Личный кабинет администратора</h3>
+
+  <div class="container">
+    <form th:action="@{/admin/product}" class="colOne">
+            <input type="submit" value="Работа с товарами" class="colButton">
+    </form>
+    
+    <form th:action="@{/admin/user}" class="colTwo">
+        <input type="submit" value="Работа с пользователями" class="colButton">
+    </form>
+
+    <form th:action="@{/admin/order}" class="colThree">
+        <input type="submit" value="Работа с заказами" class="colChosenButton">
+    </form>
+  </div>
+
+  <h3>Список заказов</h3>
+
+  <div class="functionalContainer">
+    <div class="content">
+      <form th:method="POST" th:action="@{/admin/order/search}">
+        <fieldset>
+          <legend>Введите последние символы заказа: </legend>
+          <br>
+          <input name="search" id="search" th:value="*{search}">
+          <input type="submit" value="Найти">
+  
+        </fieldset>
+      </form>
+      
+      <table> 
+        <tr>
+          <th>
+            Заказ №
+          </th>
+          <th>
+            Статус:
+          </th>
+          <th>
+            Просмотр:
+          </th>
+        </tr>
+  
+        <div th:each="order : ${orders}">
+          <tr>
+            <td>
+              <p th:text="${order.getNumber()}"></p>
+            </td>
+            <td>
+              <p th:text="${order.getStatus()}"></p>
+            </td>
+            <td>
+              <a th:href="@{/admin/order/info/{id}(id=${order.getId()})}">просмотр</a>
+            </td>
+          </tr>
+         
+        </div>
+      </table>
+    </div> 
+  </div>  
+</body>
+</html>

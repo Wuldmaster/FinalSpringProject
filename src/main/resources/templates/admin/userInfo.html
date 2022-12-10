@@ -1,0 +1,100 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Просмотр пользователями</title>
+    <link th:href="@{/css/headerUser.css}" rel="stylesheet" href="css/headerUser.css">
+    <link th:href="@{/css/userInfo.css}" rel="stylesheet" href="css/userInfo.css">
+</head>
+<body>
+    <header>
+        <a th:href="@{/admin}" class="headerLogo">Мир ПК</a>
+        <p></p>
+        <form method="post" th:action="@{/logout}" class="secondSection">
+            <input type="submit" value="Выйти" class="firstSectionButton">
+        </form>
+    </header>
+    
+    <h3>Личный кабинет администратора</h3>
+
+    <div class="container">
+        <form th:action="@{/admin/product}" class="colOne">
+                <input type="submit" value="Работа с товарами" class="colButton">
+        </form>
+        
+        <form th:action="@{/admin/user}" class="colTwo">
+            <input type="submit" value="Работа с пользователями" class="colChosenButton">
+        </form>
+
+        <form th:action="@{/admin/order}" class="colThree">
+            <input type="submit" value="Работа с заказами" class="colButton">
+        </form>
+    </div>
+
+    <h3>Просмотр пользователя</h3>
+
+    
+    <div class="functionalContainer">
+        <div class="content">
+
+
+            <div class="productInfo">
+                <div class="start">
+                    <p>Логин: </p>
+                </div>
+                <div class="end">
+                    <p th:text="${user.getLogin()}"></p>
+                </div>
+            </div>
+
+            <div class="productInfo">
+                <div class="start">
+                    <p>Роль: </p>
+                </div>
+                <div class="end">
+                    <p th:text="${user.getRole()}"></p>
+                </div>
+            </div>
+
+
+            <form th:action="@{/admin/user/edit/{id}(id=${user.getId()})}" class="editProduct">
+                <input type="submit" value="Редактировать пользователя" class="editProductButton">
+            </form>
+
+            <form th:action="@{/admin/user/delete/{id}(id=${user.getId()})}" class="delProduct">
+                <input type="submit" value="Удалить пользователя" class="delProductButton">
+            </form>            
+
+            <h3>Список заказов пользователя</h3>
+
+            <table> 
+                <tr>
+                <th>
+                    Заказ №
+                </th>
+                <th>
+                    Статус:
+                </th>
+                <th>
+                    Просмотр:
+                </th>
+                </tr>
+        
+                <div th:each="order : ${orders}">
+                <tr>
+                    <td>
+                    <p th:text="${order.getNumber()}"></p>
+                    </td>
+                    <td>
+                    <p th:text="${order.getStatus()}"></p>
+                    </td>
+                    <td>
+                    <a th:href="@{/admin/order/info/{id}(id=${order.getId()})}">просмотр</a>
+                    </td>
+                </tr>
+                
+                </div>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

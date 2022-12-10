@@ -1,0 +1,49 @@
+header{
+    display: grid;
+    grid-template-columns: 2fr 3fr 1fr 1fr;
+    margin: -8px;
+    height: 100px;
+    background-color: rgb(45, 45, 241);
+    border-radius: 0px 0px 8px 8px;
+}
+
+a{
+    text-decoration: none;
+}
+
+.headerLogo{
+    align-self: center;
+    justify-self: center;
+    font-size: 50px;
+    color: white;
+}
+
+.firstSection{
+    grid-column: 3/4;
+}
+.secondSection{
+    grid-column: 4/5;
+}
+
+.firstSection, .secondSection{
+    align-self: center;
+    border: 1px gray solid;
+    background-color: rgb(25, 25, 247);
+    border-radius: 20px;
+    width: 100px;
+    height: 40px;
+}
+
+.firstSection:hover, .secondSection:hover{
+    background-color: rgb(86, 86, 234);
+}
+
+.firstSection a, .secondSection a{
+    color: white;
+}
+
+@media (max-width: 630px){
+    header{
+        grid-template-columns: 2fr 0.5fr 1fr 1fr;  
+    }
+}

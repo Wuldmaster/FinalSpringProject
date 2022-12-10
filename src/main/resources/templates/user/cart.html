@@ -1,0 +1,48 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Корзина товаров</title>
+    <link th:href="@{/css/headerUser.css}" rel="stylesheet" href="css/headerUser.css">
+    <link th:href="@{/css/cart.css}" rel="stylesheet" href="css/cart.css">
+</head>
+<body>
+    <header>
+        <a th:href="@{/index}" class="headerLogo">Мир ПК</a>
+        <p></p>
+        <form method="get" th:action="@{/orders}" class="thirdSection">
+            <input type="submit" value="Мои заказы" class="thirdSectionButton">
+        </form>
+        <form method="get" th:action="@{/cart}" class="firstSection">
+            <input type="submit" value="Корзина" class="firstSectionButton">
+        </form>
+        <form method="post" th:action="@{/logout}" class="secondSection">
+            <input type="submit" value="Выйти" class="firstSectionButton">
+        </form>
+    </header>
+
+    <div class="productCartDiv">
+        <h3>Корзина товаров</h3>
+
+        <div th:each="product : ${cart_product}" class="productDiv">
+            <div class="productCart">
+                <div class="imageDiv">
+                    <img th:src="'/img/' + ${product.imageList[0].getFileName()}" 
+                        class="image">
+                </div> 
+        
+                <a th:href="@{/product/info/{id}(id=${product.getId()})}" 
+                    th:text="${product.getTitle()}"
+                    class="title"></a>
+
+                <p class="priceLabel">Цена: </p>
+                <p th:text="${product.getPrice()} + ' руб'" class="price"></p>
+                <a  th:href="@{/cart/delete/{id}(id=${product.getId()})}"
+                    class="delCart">Удалить из корзины</a> 
+            </div>
+        </div>
+
+        <h3 th:text="'Итоговая цена: ' + ${price} + ' руб'" class="totalPrice"></h3>
+        <a href="/order/create" class="orderButton">Оформить заказ</a>
+    </div>
+</body>
+</html>

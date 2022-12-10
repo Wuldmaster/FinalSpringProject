@@ -1,0 +1,71 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Работа с товарами</title>
+    <link th:href="@{/css/headerUser.css}" rel="stylesheet" href="css/headerUser.css">
+    <link th:href="@{/css/productView.css}" rel="stylesheet" href="css/productView.css">
+</head>
+<body>
+    <header>
+        <a th:href="@{/admin}" class="headerLogo">Мир ПК</a>
+        <p></p>
+        <form method="post" th:action="@{/logout}" class="secondSection">
+            <input type="submit" value="Выйти" class="firstSectionButton">
+        </form>
+      </header>
+    
+      <h3>Личный кабинет администратора</h3>
+    
+      <div class="container">
+        <form th:action="@{/admin/product}" class="colOne">
+                <input type="submit" value="Работа с товарами" class="colChosenButton">
+        </form>
+        
+        <form th:action="@{/admin/user}" class="colTwo">
+            <input type="submit" value="Работа с пользователями" class="colButton">
+        </form>
+    
+        <form th:action="@{/admin/order}" class="colThree">
+            <input type="submit" value="Работа с заказами" class="colButton">
+        </form>
+      </div>
+
+
+     <form th:action="@{/admin/product/add}" class="addProduct">
+        <input type="submit" value="Добавить товар" class="addproductButton">
+    </form>
+    
+    <div class="functionalContainer">
+        <div class="content">
+            <table>
+                <caption><h3>Список товаров</h3></caption>
+                <tr>
+                  <th>
+                    Наименование:
+                  </th>
+                  <th>
+                    Категория:
+                  </th>
+                  <th>
+                    Просмотр:
+                  </th>
+                </tr>
+
+                <div th:each="product : ${products}">
+                    <tr>
+                        <td>
+                            <p th:text="${product.getTitle()}"></p>
+                        </td>
+                        <td>
+                            <p th:text="${product.getCategory().getName()}"></p>
+                        </td>
+                        <td>
+                            <a th:href="@{/admin/product/info/{id}(id=${product.getId()})}">просмотр</a>  
+                        </td>
+                    </tr>
+                </div>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

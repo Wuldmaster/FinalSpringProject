@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет администратора</title>
+    <link th:href="@{/css/headerUser.css}" rel="stylesheet" href="css/headerUser.css">
+    <link th:href="@{/css/admin.css}" rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <header>
+        <a th:href="@{/admin}" class="headerLogo">Мир ПК</a>
+        <p></p>
+        <form method="post" th:action="@{/logout}" class="secondSection">
+            <input type="submit" value="Выйти" class="firstSectionButton">
+        </form>
+    </header>
+
+    <h3>Личный кабинет администратора</h3>
+
+    <div class="container">
+        <form th:action="@{/admin/product}" class="colOne">
+                <input type="submit" value="Работа с товарами" class="colButton">
+        </form>
+        
+        <form th:action="@{/admin/user}" class="colTwo">
+            <input type="submit" value="Работа с пользователями" class="colButton">
+        </form>
+
+        <form th:action="@{/admin/order}" class="colThree">
+            <input type="submit" value="Работа с заказами" class="colButton">
+        </form>
+    </div>
+    
+    <div class="functionalContainer">
+    </div>
+
+</body>
+</html>

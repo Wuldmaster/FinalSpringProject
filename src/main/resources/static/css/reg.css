@@ -1,0 +1,65 @@
+body{
+    background-color: rgba(184, 216, 169, 0.49);
+}
+
+a{
+    text-decoration: none;
+    font-size: 15px;
+    color: gray;
+}
+
+h3{
+    font-size: 30px;
+    margin-top: -20px;
+}
+
+form{
+    display: grid;
+    justify-items: start;
+}
+
+label{
+    margin-top: 15px;
+}
+
+.container{
+    display: grid;
+    justify-items: center;
+    margin-top: 50px;
+}
+
+.formContainer{
+    display: grid;
+    justify-items: center;
+    background-color: aquamarine;
+    height: 400px;
+    width: 300px;
+    padding: 50px;
+    border-radius: 10px;
+}
+.field{
+    margin-top: 5px;
+    height: 30px;
+    width: 100%;
+    border: 0px;
+    padding-left: 10px;
+    border-radius: 5px;
+}
+
+.submit{
+    margin-top: 30px;
+    justify-self: center;
+    height: 40px;
+    width: 200px;
+    font-size: 18px;
+    color: black;
+    border: 1px solid gray;
+    border-radius: 8px;
+}
+
+.loginAuthButton{
+    margin-top: 40px;
+    height: 30px;
+    width: 120px;
+}
+

@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Редактирование заказа</title>
+  <link th:href="@{/css/headerUser.css}" rel="stylesheet" href="css/headerUser.css">
+  <link th:href="@{/css/editOrder.css}" rel="stylesheet" href="css/editOrder.css">
+</head>
+<body>
+  <header>
+    <a th:href="@{/admin}" class="headerLogo">Мир ПК</a>
+    <p></p>
+    <form method="post" th:action="@{/logout}" class="secondSection">
+        <input type="submit" value="Выйти" class="firstSectionButton">
+    </form>
+  </header>
+
+  <h3>Личный кабинет администратора</h3>
+
+  <div class="container">
+    <form th:action="@{/admin/product}" class="colOne">
+            <input type="submit" value="Работа с товарами" class="colButton">
+    </form>
+    
+    <form th:action="@{/admin/user}" class="colTwo">
+        <input type="submit" value="Работа с пользователями" class="colButton">
+    </form>
+
+    <form th:action="@{/admin/order}" class="colThree">
+        <input type="submit" value="Работа с заказами" class="colChosenButton">
+    </form>
+  </div>
+
+  <h3>Смена статуса заказа</h3>
+  
+  <div class="functionalContainer">
+  
+      <form th:method="POST" th:action="@{/admin/order/edit/{id}(id=${order.getId()})}" th:object="${order}" class="content">
+
+        <p class="statusLabel">Текущий статус: </p>
+        <p th:text="${order.getStatus()}" class="status"></p>
+
+        <select id="status" name="status" th:field="*{status}" class="selector">
+          <option th:each="status : ${T(com.example.finalspringapp.enums.Status).values()}" th:value="${status}" th:text="${status}">
+          </option>
+        </select>
+
+        <input type="submit" value="Применить" class="submit">
+      </form>
+  </div>
+</body>
+</html>

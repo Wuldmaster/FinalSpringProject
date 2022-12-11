@@ -45,20 +45,20 @@
 
                 <div>
                     <label for="search">Поиск по наименованию</label><br>
-                    <input name="search" id="search" th:value="*{value_search}" class="search">
+                    <input name="search" id="search" th:value="*{search}" class="search">
                 </div>
                                     
                 <label>Цена, ₽</label>
 
                 <div>
                     <label for="from">От</label>
-                    <input type="text" th:value="*{price_from}" name="from" id="from" pattern="[0-9]+" class="priceInput">
+                    <input type="text" th:value="*{from}" name="from" id="from" pattern="[0-9]+" class="priceInput">
                 </div>
                
 
                 <div>
                     <label for="to">До</label>
-                    <input type="text" th:value="*{price_to}" name="to" id="to" pattern="[0-9]+" class="priceInput">
+                    <input type="text" th:value="*{to}" name="to" id="to" pattern="[0-9]+" class="priceInput">
                 </div>
 
                 <div>

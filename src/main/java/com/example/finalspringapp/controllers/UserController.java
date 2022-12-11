@@ -140,9 +140,9 @@ public class UserController {
 
         model.addAttribute("isFlag", 1);
         model.addAttribute("search_product", productService.sortAndSearch(search, from, to, priceSort, category) );
-        model.addAttribute("value_search", search);
-        model.addAttribute("price_from", from);
-        model.addAttribute("price_to", to);
+        model.addAttribute("search", search);
+        model.addAttribute("from", from);
+        model.addAttribute("to", to);
         model.addAttribute("category", categoryService.findAll());
         return "/user/index";
 

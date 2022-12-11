@@ -78,11 +78,11 @@ public class ProductService {
 
     public List<Product> sortAndSearch(String search, String from, String to, String priceSort, String category){
 
-        if(from.equals("0")){
+        if(from.equals("0") || from.equals("")){
             from = "0";
         }
 
-        if(to.equals("0")){
+        if(to.equals("0") || to.equals("")){
             to="1000000";
         }
 

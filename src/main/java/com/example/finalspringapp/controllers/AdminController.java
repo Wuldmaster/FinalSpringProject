@@ -178,5 +178,4 @@ public class AdminController {
         orderService.updateOrder(id, status);
         return "redirect:/admin/order";
     }
-    //todo добавить возможность менять изображение продукта
 }

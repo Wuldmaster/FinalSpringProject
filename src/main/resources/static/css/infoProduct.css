@@ -16,7 +16,6 @@ h3{
 .infoContainer{
     display: grid;
     justify-items: center;
-    background-color: aquamarine;
     height: auto;
     width: 1200px;
     padding: 50px;
@@ -24,10 +23,14 @@ h3{
     border-radius: 10px;
 }
 
-.imageCollage{
+.infoDiv{
     display: grid;
     justify-items: center;
+    grid-template-columns: 1fr 1fr;
     background-color: white;
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
     border-radius: 15px;
     padding-top: 20px;
 }
@@ -63,22 +66,25 @@ h3{
     justify-items: center;
 }
 img{
-    width: 200px;
+    width: 100px;
     margin-left: 10px;
     margin-right: 10px;
 }
 
+.productInfoDiv{
+    grid-column: 2/3;
+    width: 100%;
+}
+
 .productInfo{
     display: grid;
+    
     grid-template-columns: 1fr 1fr;
     font-size: 20px;
     margin-top: 10px;
     padding-left: 10px;
     padding-right: 10px;
-    border: 1px black solid;
-    border-radius: 8px;
-    background-color: white;
-    width: 60%;
+    width: 100%;
 }
 
 .start{
@@ -100,7 +106,30 @@ img{
     border: 1px black solid;
     border-radius: 8px;
     background-color: white;
-    width: 60%;
+    width: 100%;
     height: auto;
     font-size: 20px;
+}
+
+.addCartSection{
+    display: grid;
+    justify-self: end;
+    grid-column: 2/3;
+    margin-bottom: 0px;
+}
+
+.addCart{
+    font-size: 20px;
+    align-self: center;
+    background-color: rgb(230, 106, 106);
+    border-radius: 3px;
+    color: white;
+    width: 150px;
+    padding: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+.addCart:hover{
+    color:rgba(46, 29, 99, 0.966)
 }

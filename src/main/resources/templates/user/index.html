@@ -92,15 +92,23 @@
                 <div th:each="product : ${search_product}">
                     <div class="productCart">
                         <div class="imageDiv">
+
                             <img th:src="'/img/' + ${product.imageList[0].getFileName()}"
-                                 class="image">
+                                class="image">
+
                         </div>
 
                         <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}" class="title"></a>
-
-                        <p class="priceLabel">Цена: </p>
-                        <p th:text="${product.getPrice()} + ' руб'" class="price"></p>
-                        <a th:href="@{/cart/add/{id}(id=${product.getId()})}" class="addCart">Добавить в корзину</a>
+                        
+                        <!-- <p class="priceLabel">Цена: </p> -->
+                        <div class="priceDiv">
+                            <p th:text="${product.getPrice()} + ' руб'" class="price"> </p>
+                            
+                            <form method="get" th:action="@{/cart/add/{id}(id=${product.getId()})}" class="addCartSection">
+                                <input type="submit" value="В КОРЗИНУ" class="addCart">
+                            </form>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -112,16 +120,26 @@
                 <div th:each="product : ${products}">
                     <div class="productCart">
                         <div class="imageDiv">
+
+                           
                             <img th:src="'/img/' + ${product.imageList[0].getFileName()}"
                                 class="image">
+
                         </div>
 
                         <a th:href="@{/product/info/{id}(id=${product.getId()})}" th:text="${product.getTitle()}" class="title"></a>
-
-                        <p class="priceLabel">Цена: </p>
-                        <p th:text="${product.getPrice()} + ' руб'" class="price"></p>
-                        <a th:href="@{/cart/add/{id}(id=${product.getId()})}" class="addCart">Добавить в корзину</a>
+                        
+                        <!-- <p class="priceLabel">Цена: </p> -->
+                        <div class="priceDiv">
+                            <p th:text="${product.getPrice()} + ' руб'" class="price"></p>
+                            
+                            <form method="get" th:action="@{/cart/add/{id}(id=${product.getId()})}" class="addCartSection">
+                                <input type="submit" value="В КОРЗИНУ" class="addCart">
+                            </form>
+                        </div>
+                        
                     </div>
+
                 </div>
             </div>
         </div>

@@ -70,36 +70,36 @@ fieldset{
 
 .productDiv{
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     width: 100%;
     justify-items: center;
 }
 
 .productCart{
     display: grid;
-    grid-template-columns: 0.5fr 1fr 1fr;
-    grid-template-rows: 2fr 1fr 0.2fr;
-    height: 150px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 1fr 0.5fr 0.5fr;
+    height: auto;
     padding: 15px;
-    width: 100%;
-    border: 1px black solid;
+    border: 1px gray solid;
     border-radius: 10px;
     background-color: white;
     margin-top: 15px;
     margin-bottom: 15px;
-    min-width: 600px;
-    max-width: 600px;
+    width: 350px;
 }
 
 .productCart:hover{
     box-shadow: 5px 5px 5px 0 rgba(21, 207, 46, 0.603);
+    border: 1px black solid;
 }
 
 .imageDiv{
+    justify-self: center;
     align-self: center;
-    grid-column: 1/2;
-    grid-row: 1/3;
-    width: 150px;
+    grid-row: 1/2;
+    width: 200px;
+    height: 200px;
     margin-right: 15px;
 
 }
@@ -112,31 +112,48 @@ fieldset{
 
 .title{
     align-self: center;
-    grid-column: 2/4;
-    grid-row: 1/2;
+    grid-row: 2/3;
     font-size: 25px;
-    justify-self: end;
+    justify-self: center;
 }
 
 .priceLabel{
     align-self: center;
     grid-column: 2/3;
-    grid-row: 2/3;
+    
     font-size: 25px;
     justify-self: start;
 }
 
+.priceDiv{
+    display: grid;
+    grid-row: 4/5;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+}
+
 .price{
     align-self: center;
-    grid-column: 3/4;
-    grid-row: 2/3;
     font-size: 25px;
+    grid-column: 1/2;
+    justify-self: start;
+}
+
+.addCartSection{
     justify-self: end;
+    grid-column: 2/3;
+    margin-bottom: 0px;
 }
 
 .addCart{
     font-size: 20px;
-    grid-column: 1/3;
+    
+    background-color: rgb(230, 106, 106);
+    border-radius: 3px;
+    color: white;
+    width: 150px;
+    padding: 4px;
+    border: none;
     cursor: pointer;
 }
 
@@ -144,9 +161,15 @@ fieldset{
     color:rgba(46, 29, 99, 0.966)
 }
 
+@media (max-width: 1150px) {
+    .productDiv{
+        grid-template-columns: 1fr;
+    }
+}
 
 @media (min-width: 1650px) {
     .productDiv{
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
     }
 }
+

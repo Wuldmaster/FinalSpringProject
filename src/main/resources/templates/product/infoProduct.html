@@ -38,68 +38,75 @@
     <div class="container">
         <h3>Информация о товаре</h3>
         <div class="infoContainer">
-            <div class="imageCollage">
+            <div class="infoDiv">
                 <div class="mainImageDiv">
                     <img th:src="'/img/' + ${product.getImageList().get(0).getFileName()}" class="mainImage">
                 </div>
+
+                <div class="productInfoDiv">
+                    <div class="productInfo">
+                        <div class="start">
+                            <p>Наименование: </p>
+                        </div>
+                        <div class="end">
+                            <p th:text="${product.getTitle()}"></p>
+                        </div>
+                    </div>
+        
+                    <div class="productInfo">
+                        <div class="start">
+                            <p>Цена: </p>
+                        </div>
+                        <div class="end">
+                            <p th:text="${product.getPrice()} + ' руб'"></p>
+                        </div>
+                    </div>
+        
+                    <div class="productInfo">
+                        <div class="start">
+                            <p>Склад: </p>
+                        </div>
+                        <div class="end">
+                            <p th:text="${product.getWarehouse()}"></p>
+                        </div>
+                    </div>
+        
+                    <div class="productInfo">
+                        <div class="start">
+                            <p>Продавец: </p>
+                        </div>
+                        <div class="end">
+                            <p th:text="${product.getSeller()}"></p>
+                        </div>  
+                    </div>
+        
+                    <div class="productInfo">
+                        <div class="start">
+                            <p>Категория: </p>
+                        </div>
+                        <div class="end">
+                            <p th:text="${product.getCategory().getName()}"></p>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="imageContainer">
                     <div th:each="img : ${product.getImageList()}" class="imageDiv">
                         <img th:src="'/img/' + ${img.getFileName()}" id="imageList">
-                    </div>
+                    </div>                    
                 </div>
-            </div>
 
+                <form method="get" th:action="@{/cart/add/{id}(id=${product.getId()})}" class="addCartSection">
+                    <input type="submit" value="В КОРЗИНУ" class="addCart">
+                </form>
 
-            <div class="productInfo">
-                <div class="start">
-                    <p>Наименование: </p>
-                </div>
-                <div class="end">
-                    <p th:text="${product.getTitle()}"></p>
-                </div>
-            </div>
-
-            <div class="productInfo">
-                <div class="start">
-                    <p>Цена: </p>
-                </div>
-                <div class="end">
-                    <p th:text="${product.getPrice()} + ' руб'"></p>
-                </div>
-            </div>
-
-            <div class="productInfo">
-                <div class="start">
-                    <p>Склад: </p>
-                </div>
-                <div class="end">
-                    <p th:text="${product.getWarehouse()}"></p>
-                </div>
-            </div>
-
-            <div class="productInfo">
-                <div class="start">
-                    <p>Продавец: </p>
-                </div>
-                <div class="end">
-                    <p th:text="${product.getSeller()}"></p>
-                </div>
-            </div>
-
-            <div class="productInfo">
-                <div class="start">
-                    <p>Категория: </p>
-                </div>
-                <div class="end">
-                    <p th:text="${product.getCategory().getName()}"></p>
-                </div>
-            </div>
-
+            </div>            
+            
+            
             <p class="descLabel">Описание: </p>
             <div class="description">
                 <p th:text="${product.getDescription()}"></p>
-            </div>
-            
+            </div> 
         </div>
     </div>
     <script th:src="@{/js/infoProduct.js}" src="js/infoProduct.js"></script>

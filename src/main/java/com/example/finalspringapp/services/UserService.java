@@ -1,7 +1,7 @@
 package com.example.finalspringapp.services;
 
 import com.example.finalspringapp.models.Person;
-import com.example.finalspringapp.models.Product;
+import com.example.finalspringapp.repositories.OrderRepository;
 import com.example.finalspringapp.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,11 +16,13 @@ public class UserService {
 
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
+    private OrderRepository orderRepository;
 
     @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, OrderRepository orderRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.orderRepository = orderRepository;
     }
 
     public List<Person> getAllPersons() {
@@ -53,6 +55,7 @@ public class UserService {
 
     @Transactional
     public void deleteUser(int id) {
+        orderRepository.deleteByPersonId(id);
         userRepository.deleteById(id);
     }
 }

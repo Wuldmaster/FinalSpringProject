@@ -14,4 +14,6 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     List<Order> findByPerson(Person person);
 
     List<Order> findByNumberEndsWith(String number);
+
+    void deleteByPersonId(int id);
 }

@@ -66,16 +66,17 @@
 
                     <div>
                         <label for="ascending_price">По возрастанию цены</label>
-                        <input type="radio" id="ascending_price" name="price" value="sorted_by_ascending_price">
+                        <input type="radio" id="ascending_price" name="priceSort" th:value="sorted_by_ascending_price">
                     </div>
                     
                     <div>
                         <label for="descending_price">По убыванию цены</label>
-                        <input type="radio" id="descending_price" name="price" value="sorted_by_descending_price">
+                        <input type="radio" id="descending_price" name="priceSort" th:value="sorted_by_descending_price">
                     </div>
                     
                     <p class="category">Категория товаров: </p>
                     <select name="category" id="category">
+                        <option selected th:value="none">Все категории</option>
                         <div th:each="element : ${category}">
                             <option th:text="${element.getName()}" th:value="${element.getName()}"></option>
                         </div>

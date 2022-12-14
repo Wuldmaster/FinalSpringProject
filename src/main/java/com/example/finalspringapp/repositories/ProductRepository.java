@@ -13,4 +13,8 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findByTitleContainingIgnoreCaseAndCategoryIdAndPriceBetweenOrderByPriceAsc(String search, int categoryId, float priceStart, float priceEnd);
     List<Product> findByTitleContainingIgnoreCaseAndCategoryIdAndPriceBetweenOrderByPriceDesc(String search, int categoryId, float priceStart, float priceEnd);
 
+    List<Product> findByTitleContainingIgnoreCaseAndCategoryIdGreaterThanEqualAndCategoryIdLessThanAndPriceBetweenOrderByPriceAsc(String search, int startCategoryId, int endCategoryId, float priceStart, float priceEnd);
+
+    List<Product> findByTitleContainingIgnoreCaseAndCategoryIdGreaterThanEqualAndCategoryIdLessThanAndPriceBetweenOrderByPriceDesc(String search, int startCategoryId, int endCategoryId, float priceStart, float priceEnd);
+
 }

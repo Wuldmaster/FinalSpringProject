@@ -78,6 +78,9 @@ public class ProductService {
 
     public List<Product> sortAndSearch(String search, String from, String to, String priceSort, String category){
 
+        int startCategory;
+        int endCategory;
+
         if(from.equals("0") || from.equals("")){
             from = "0";
         }
@@ -85,15 +88,33 @@ public class ProductService {
         if(to.equals("0") || to.equals("")){
             to="1000000";
         }
+        System.out.println("//////////////////////////////////"+category+"//");
+        if(category.equals("none")){
+            startCategory = 0;
+            endCategory = 5;
+        } else {
+            startCategory = categoryService.findByName(category).getId();
+            endCategory = categoryService.findByName(category).getId() + 1;
+        }
+
+        System.out.println("///////////////////"+priceSort);
 
         if(priceSort.equals("sorted_by_ascending_price") || priceSort.isEmpty()){
+//            return productRepository
+//                    .findByTitleContainingIgnoreCaseAndCategoryIdAndPriceBetweenOrderByPriceAsc(search,
+//                            categoryService.findByName(category).getId(), Float.parseFloat(from) ,Float.parseFloat(to));
+
             return productRepository
-                    .findByTitleContainingIgnoreCaseAndCategoryIdAndPriceBetweenOrderByPriceAsc(search,
-                            categoryService.findByName(category).getId(), Float.parseFloat(from) ,Float.parseFloat(to));
+                    .findByTitleContainingIgnoreCaseAndCategoryIdGreaterThanEqualAndCategoryIdLessThanAndPriceBetweenOrderByPriceAsc(search,
+                            startCategory, endCategory, Float.parseFloat(from) ,Float.parseFloat(to));
         } else {
+//            return productRepository
+//                    .findByTitleContainingIgnoreCaseAndCategoryIdAndPriceBetweenOrderByPriceDesc(search,
+//                            categoryService.findByName(category).getId(), Float.parseFloat(from) ,Float.parseFloat(to));
             return productRepository
-                    .findByTitleContainingIgnoreCaseAndCategoryIdAndPriceBetweenOrderByPriceDesc(search,
-                            categoryService.findByName(category).getId(), Float.parseFloat(from) ,Float.parseFloat(to));
+                    .findByTitleContainingIgnoreCaseAndCategoryIdGreaterThanEqualAndCategoryIdLessThanAndPriceBetweenOrderByPriceDesc(search,
+                            startCategory, endCategory, Float.parseFloat(from) ,Float.parseFloat(to));
+
         }
 
     }
